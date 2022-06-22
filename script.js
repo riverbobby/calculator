@@ -7,8 +7,10 @@ function operate(a, b, operator) {
         result = subtract(a, b);
     }else if (operator === '*') {
         result = multiply(a, b);
-    }else {
+    }else if (operator === '/') {
         result = divide(a, b);
+    }else {
+        result = "Unknown ERROR";
     }
 
 }
@@ -34,5 +36,5 @@ function divide(a, b) {
 }
 
 function refreshDisplay() {
-    
+
 }
