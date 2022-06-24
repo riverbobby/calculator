@@ -49,9 +49,10 @@
 .button {
     font-size: 4rem;
     font-weight: bolder;
-    border: 2px solid rgb(24, 11, 11);
     border-radius: 0.5rem;
 }
+
+
 
 #equals {
     grid-column: 1 / 5;
