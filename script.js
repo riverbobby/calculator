@@ -26,15 +26,35 @@ function operate(a, b, operator) {
     let result = "";
 
     if (operator === '+') {
-        result = add(a, b);
+        result = add(a, b).toString();
     }else if (operator === '-') {
-        result = subtract(a, b);
+        result = subtract(a, b).toString();
     }else if (operator === 'x') {
-        result = multiply(a, b);
+        result = multiply(a, b).toString();
     }else {
-        result = divide(a, b);
+        result = divide(a, b).toString();
     }
-    refreshDisplay(result);
+    if (result === 'ERROR') {
+        refreshDisplay(result);
+        disableAll();
+    }else {
+        if (result.length > 10) {
+            let index = result.indexOf('.');
+            if (index === -1 || index > 9) {
+                result = 'OVERFLOW';
+                disableAll();
+            }else {
+                let num = +result;
+                result = num.toFixed(9-index);
+            }
+        }
+        tempNum = result;
+        num1 = +result;
+        num2 = 0;
+
+        refreshDisplay(result);
+    }
+    
 }
 
 function add(a, b) {
@@ -87,6 +107,8 @@ function clickedOperator(button) {
 
 function clickedEquals(button) {
     num2 = +tempNum;
+    numbers.forEach(disabled);
+    operators.forEach(enabled);
     operate(num1, num2, operator);
 }
 
